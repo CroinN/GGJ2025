@@ -1,0 +1,50 @@
+using System;
+using UnityEngine;
+
+public class InputProvider : MonoBehaviour, IService
+{
+    public event Action<Vector3> MoveEvent;
+    
+    [SerializeField] private KeyCode _moveForwardKey = KeyCode.W;
+    [SerializeField] private KeyCode _moveBackwardKey = KeyCode.S;
+    [SerializeField] private KeyCode _moveLeftKey = KeyCode.A;
+    [SerializeField] private KeyCode _moveRightKey = KeyCode.D;
+    [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
+
+    private void Awake()
+    {
+        RegisterService();
+    }
+
+    private void OnDestroy()
+    {
+        UnregisterService();
+    }
+
+    private void Update()
+    {
+        HandleMovementInput();
+    }
+
+    private void HandleMovementInput()
+    {
+        Vector3 direction = Vector3.zero;
+    
+        direction += Input.GetKey(_moveForwardKey) ? Vector3.forward : Vector3.zero;
+        direction += Input.GetKey(_moveBackwardKey) ? Vector3.back : Vector3.zero;
+        direction += Input.GetKey(_moveLeftKey) ? Vector3.left : Vector3.zero;
+        direction += Input.GetKey(_moveRightKey) ? Vector3.right : Vector3.zero;
+        
+        MoveEvent?.Invoke(direction);
+    }
+
+    public void RegisterService()
+    {
+        SL.Register(this);
+    }
+
+    public void UnregisterService()
+    {
+        SL.Unregister(this);
+    }
+}
