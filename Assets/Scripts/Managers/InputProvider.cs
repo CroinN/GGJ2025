@@ -4,6 +4,7 @@ using UnityEngine;
 public class InputProvider : MonoBehaviour, IService
 {
     public event Action<Vector3> MoveEvent;
+    public event Action JumpEvent;
     
     [SerializeField] private KeyCode _moveForwardKey = KeyCode.W;
     [SerializeField] private KeyCode _moveBackwardKey = KeyCode.S;
@@ -35,7 +36,14 @@ public class InputProvider : MonoBehaviour, IService
         direction += Input.GetKey(_moveLeftKey) ? Vector3.left : Vector3.zero;
         direction += Input.GetKey(_moveRightKey) ? Vector3.right : Vector3.zero;
         
+        bool shouldJump = Input.GetKeyDown(_jumpKey);
+        
         MoveEvent?.Invoke(direction);
+        
+        if (shouldJump)
+        {
+            JumpEvent?.Invoke();
+        }
     }
 
     public void RegisterService()
