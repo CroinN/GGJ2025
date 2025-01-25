@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2231913883016538714}
+  - component: {fileID: 6179376666606027282}
   m_Layer: 0
   m_Name: garbageManager
   m_TagString: Untagged
@@ -31,6 +32,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3067083389131782086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6179376666606027282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036017327496758011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3beec1156b7ca4082bbc950ba8f2c75b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _garbageParent: {fileID: 0}
 --- !u!1 &1763205698664149973
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,8 +128,8 @@ MonoBehaviour:
   _moveLeftKey: 97
   _moveRightKey: 100
   _jumpKey: 32
-  _xSensitivity: 0
-  _ySensitivity: 0
+  _xSensitivity: 20
+  _ySensitivity: 20
   _shootingButton: 0
 --- !u!1001 &9079030716863506635
 PrefabInstance:

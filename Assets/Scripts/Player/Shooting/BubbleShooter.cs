@@ -10,7 +10,6 @@ public class BubbleShooter : MonoBehaviour
 {
     [SerializeField] private float _startOffsetRadius;
     [SerializeField] private float _endOffsetRadius;
-    [SerializeField] private float _offsetLenght;
 
     [SerializeField] private float _bubblesPerSecond;
     
@@ -75,7 +74,7 @@ public class BubbleShooter : MonoBehaviour
         Vector3 point2d = new Vector3(r * Mathf.Cos(theta), r * Mathf.Sin(theta), 0);
 
         Vector3 tangent = Vector3.Cross(unitNormal, Vector3.right).normalized;
-        if (tangent.magnitude < 0.001f) // Handle the edge case where normal is parallel to Vector3.right
+        if (tangent.magnitude < 0.001f)
         {
             tangent = Vector3.Cross(unitNormal, Vector3.up).normalized;
         }
