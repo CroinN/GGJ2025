@@ -121,7 +121,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3034024276498599881}
-  - component: {fileID: 9171954459701566802}
   m_Layer: 0
   m_Name: View
   m_TagString: Untagged
@@ -145,24 +144,6 @@ Transform:
   - {fileID: 6320534002088921017}
   m_Father: {fileID: 4331135091547243767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9171954459701566802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3206425066549696279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 1
-  outlineColor: {r: 0.04218582, g: 0.074314676, b: 0.11320752, a: 1}
-  outlineWidth: 9
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1001 &5781976862820704338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -245,6 +226,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cookie@Walking
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061379621655842241, guid: 023a076dd10e34f7ab247d4a943b88fc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2494753077777379880, guid: 023a076dd10e34f7ab247d4a943b88fc,
         type: 3}
