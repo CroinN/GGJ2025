@@ -12,9 +12,9 @@ public class PlayerMovementController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void Move(Vector3 direciton)
+    public void Move(Vector3 direction)
     {
-        Vector3 velocity = direciton * _speed;
+        Vector3 velocity = direction * _speed;
         velocity.y = _rigidbody.velocity.y;
         _rigidbody.velocity = velocity;
     }

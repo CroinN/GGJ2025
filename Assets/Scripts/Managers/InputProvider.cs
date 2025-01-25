@@ -1,16 +1,19 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InputProvider : MonoBehaviour, IService
 {
     public event Action<Vector3> MoveEvent;
     public event Action JumpEvent;
+    public event Action ShootEvent;
     
     [SerializeField] private KeyCode _moveForwardKey = KeyCode.W;
     [SerializeField] private KeyCode _moveBackwardKey = KeyCode.S;
     [SerializeField] private KeyCode _moveLeftKey = KeyCode.A;
     [SerializeField] private KeyCode _moveRightKey = KeyCode.D;
     [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
+    [SerializeField] private MouseButton _shootingButton = MouseButton.Left;
 
     private void Awake()
     {
@@ -43,6 +46,11 @@ public class InputProvider : MonoBehaviour, IService
         if (shouldJump)
         {
             JumpEvent?.Invoke();
+        }
+
+        if (Input.GetMouseButton((int)_shootingButton))
+        {
+            ShootEvent?.Invoke();
         }
     }
 
