@@ -55,7 +55,7 @@ public class InputProvider : MonoBehaviour, IService
         Vector2 rotateDirection = Vector2.zero;
         rotateDirection.x = -Input.GetAxis("Mouse Y") * _ySensitivity;
         rotateDirection.y = Input.GetAxis("Mouse X") * _xSensitivity;
-        RotateEvent.Invoke(rotateDirection);
+        RotateEvent?.Invoke(rotateDirection);
     }
 
     public void RegisterService()
