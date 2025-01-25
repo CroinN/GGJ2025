@@ -21,7 +21,10 @@ public class PlayerMovementController : MonoBehaviour
         
         Vector3 velocity = direciton * _speed;
         velocity.y = _rigidbody.velocity.y;
-        _rigidbody.velocity = velocity;
+        if (velocity.x != 0 && velocity.z != 0)
+        {
+            _rigidbody.velocity = velocity;
+        }
     }
 
     public void Jump()
