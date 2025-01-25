@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InputProvider : MonoBehaviour, IService
@@ -6,7 +7,8 @@ public class InputProvider : MonoBehaviour, IService
     public event Action<Vector3> MoveEvent;
     public event Action JumpEvent;
     public event Action<Vector2> RotateEvent;
-    
+    public event Action ShootEvent;
+
     [SerializeField] private KeyCode _moveForwardKey = KeyCode.W;
     [SerializeField] private KeyCode _moveBackwardKey = KeyCode.S;
     [SerializeField] private KeyCode _moveLeftKey = KeyCode.A;
@@ -14,7 +16,7 @@ public class InputProvider : MonoBehaviour, IService
     [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
     [SerializeField] private float _xSensitivity;
     [SerializeField] private float _ySensitivity;
-    
+    [SerializeField] private MouseButton _shootingButton;
     private void Awake()
     {
         RegisterService();
@@ -41,12 +43,18 @@ public class InputProvider : MonoBehaviour, IService
         direction += Input.GetKey(_moveRightKey) ? Vector3.right : Vector3.zero;
         
         bool shouldJump = Input.GetKeyDown(_jumpKey);
+        bool shouldShoot = Input.GetMouseButton((int)_shootingButton);
         
         MoveEvent?.Invoke(direction);
         
         if (shouldJump)
         {
             JumpEvent?.Invoke();
+        }
+
+        if (shouldShoot)
+        {
+            ShootEvent?.Invoke();
         }
     }
 
