@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] PlayerInputHandler _playerInputHandler;
-    [SerializeField] PlayerMovementController _playerMovementController;
-    [SerializeField] private PlayerShootingController _playerShootingController;
+    public static string PlayerLayer = "Player";
+    
+    [SerializeField] private PlayerInputHandler _playerInputHandler;
+    [SerializeField] private PlayerMovementController _playerMovementController;
+    [SerializeField] private PlayerRotateController _playerRotateController;
 
     private void Awake()
     {   
         _playerInputHandler.MoveEvent += OnMove;
         _playerInputHandler.JumpEvent += OnJump;
-        _playerInputHandler.ShootEvent += OnShoot;
+        _playerInputHandler.RotateEvent += OnRotate;
     }
 
     private void OnMove(Vector3 direction)
@@ -23,8 +25,8 @@ public class PlayerController : MonoBehaviour
         _playerMovementController.Jump();
     }
 
-    private void OnShoot()
+    private void OnRotate(Vector2 direction)
     {
-        _playerShootingController.Shoot();
+        _playerRotateController.Rotate(direction);
     }
 }

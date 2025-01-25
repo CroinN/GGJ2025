@@ -5,7 +5,7 @@ public class PlayerInputHandler : MonoBehaviour
 {
     public event Action<Vector3> MoveEvent;
     public event Action JumpEvent;
-    public event Action ShootEvent;
+    public event Action<Vector2> RotateEvent;
     
     private InputProvider _inputProvider;
 
@@ -14,7 +14,7 @@ public class PlayerInputHandler : MonoBehaviour
         _inputProvider = SL.Get<InputProvider>();
         _inputProvider.MoveEvent += OnMove;
         _inputProvider.JumpEvent += OnJump;
-        _inputProvider.ShootEvent += OnShoot;
+        _inputProvider.RotateEvent += OnRotate;
     }
 
     private void OnMove(Vector3 direction)
@@ -27,8 +27,8 @@ public class PlayerInputHandler : MonoBehaviour
         JumpEvent?.Invoke();
     }
 
-    private void OnShoot()
+    private void OnRotate(Vector2 direction)
     {
-        ShootEvent?.Invoke();
+        RotateEvent?.Invoke(direction);
     }
 }

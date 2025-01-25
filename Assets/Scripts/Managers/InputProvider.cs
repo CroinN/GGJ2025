@@ -6,15 +6,17 @@ public class InputProvider : MonoBehaviour, IService
 {
     public event Action<Vector3> MoveEvent;
     public event Action JumpEvent;
+    public event Action<Vector2> RotateEvent;
     public event Action ShootEvent;
-    
+
     [SerializeField] private KeyCode _moveForwardKey = KeyCode.W;
     [SerializeField] private KeyCode _moveBackwardKey = KeyCode.S;
     [SerializeField] private KeyCode _moveLeftKey = KeyCode.A;
     [SerializeField] private KeyCode _moveRightKey = KeyCode.D;
     [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
-    [SerializeField] private MouseButton _shootingButton = MouseButton.Left;
-
+    [SerializeField] private float _xSensitivity;
+    [SerializeField] private float _ySensitivity;
+    [SerializeField] private MouseButton _shootingButton;
     private void Awake()
     {
         RegisterService();
@@ -28,6 +30,7 @@ public class InputProvider : MonoBehaviour, IService
     private void Update()
     {
         HandleMovementInput();
+        HandleRotateInput();
     }
 
     private void HandleMovementInput()
@@ -40,6 +43,7 @@ public class InputProvider : MonoBehaviour, IService
         direction += Input.GetKey(_moveRightKey) ? Vector3.right : Vector3.zero;
         
         bool shouldJump = Input.GetKeyDown(_jumpKey);
+        bool shouldShoot = Input.GetMouseButton((int)_shootingButton);
         
         MoveEvent?.Invoke(direction);
         
@@ -48,10 +52,18 @@ public class InputProvider : MonoBehaviour, IService
             JumpEvent?.Invoke();
         }
 
-        if (Input.GetMouseButton((int)_shootingButton))
+        if (shouldShoot)
         {
             ShootEvent?.Invoke();
         }
+    }
+
+    private void HandleRotateInput()
+    {
+        Vector2 rotateDirection = Vector2.zero;
+        rotateDirection.x = -Input.GetAxis("Mouse Y") * _ySensitivity;
+        rotateDirection.y = Input.GetAxis("Mouse X") * _xSensitivity;
+        RotateEvent.Invoke(rotateDirection);
     }
 
     public void RegisterService()
