@@ -42,7 +42,7 @@ class MyRenderPass : ScriptableRenderPass
 
         using( new ProfilingScope(_commandBuffer, new ProfilingSampler("My Post Process Effect Test")))
         {
-            // Setup Passes I Guess
+            // Setup Passes Shaders to Volume Component Here
         }
 
         context.ExecuteCommandBuffer(_commandBuffer);
