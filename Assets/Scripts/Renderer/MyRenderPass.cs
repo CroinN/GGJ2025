@@ -1,49 +1,54 @@
+using System;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
 using UnityEngine;
 
+[Serializable]
 class MyRenderPass : ScriptableRenderPass
 {
-    public Shader MyShader;
     private Material _myShaderMaterial;
+    private RTHandle _colorHandle, _depthHandle;
 
-    private RenderTargetIdentifier _source, _result;
-
-    public MyRenderPass()
+    ////
+    public MyRenderPass(Material myShaderMaterial)
     {
-        if (!_myShaderMaterial) _myShaderMaterial = CoreUtils.CreateEngineMaterial(MyShader);
+        _myShaderMaterial = myShaderMaterial;
 
         renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
     }
 
-    ////
-    public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
+    public void SetColorTargetHandle(RTHandle colorHandle)
     {
-        _source = renderingData.cameraData.renderer.cameraColorTargetHandle;
-        _result = new RenderTargetIdentifier();
+        _colorHandle = colorHandle;
     }
 
+    public void SetDepthTargetHandle(RTHandle depthHandle)
+    {
+        _depthHandle = depthHandle; 
+    }
+    ////
+
+    ////
     public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
     {
-        CommandBuffer _commandBuffer;
         VolumeStack _volumes;
         MyVolumeComponent _myVolumeComponent;
+        CommandBuffer _commandBuffer;
 
-        _commandBuffer = CommandBufferPool.Get("MyRendererFeature");
         _volumes = VolumeManager.instance.stack;
         _myVolumeComponent = _volumes.GetComponent<MyVolumeComponent>();
 
-        if (_myVolumeComponent.active)
+        _commandBuffer = CommandBufferPool.Get();
+
+        using( new ProfilingScope(_commandBuffer, new ProfilingSampler("My Post Process Effect Test")))
         {
-            // _myVolumeComponent.properties -> _myShaderMaterial.properties
-
-            Blit(_commandBuffer, _source, _result, _myShaderMaterial, 0);
+            // Setup Passes I Guess
         }
-    }
 
-    public override void OnCameraCleanup(CommandBuffer cmd)
-    {
+        context.ExecuteCommandBuffer(_commandBuffer);
+        _commandBuffer.Clear();
 
+        CommandBufferPool.Release(_commandBuffer);
     }
     ////
 
