@@ -14,6 +14,8 @@ public class PlayerMovementController : MonoBehaviour
 
     public void Move(Vector3 direciton)
     {
+        direciton = transform.right * direciton.x + transform.forward * direciton.z;
+        
         Vector3 velocity = direciton * _speed;
         velocity.y = _rigidbody.velocity.y;
         _rigidbody.velocity = velocity;
