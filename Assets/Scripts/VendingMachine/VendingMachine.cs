@@ -9,9 +9,10 @@ public class VendingMachine : MonoBehaviour
 {  
     public enum Drink
     {
-        HayKola,
-        BariNarinj,
-        SarainDyu
+        Cola,
+        Fanta,
+        Jermuk,
+        Sprite
     }
     
     [Serializable]
@@ -27,16 +28,9 @@ public class VendingMachine : MonoBehaviour
 
     public int GetPrice(Drink type) => priceList.Where(obj=>obj.type==type).ToArray()[0].price;
     
-    [SerializeField] private Drink _selectedDrink;
-    
     private void Start()
     {
         _currencyManager = SL.Get<CurrencyManager>();
-    }
-
-    public void SelectDrink(Drink type)
-    {
-        _selectedDrink = type;
     }
 
     public void Purchase(Drink type, Action<bool> callback)
@@ -48,10 +42,6 @@ public class VendingMachine : MonoBehaviour
         if (purchasePossible)
         {
             _currencyManager.RemoveCurrency(price);
-        }
-        else
-        {
-            // ...
         }
     }
 }

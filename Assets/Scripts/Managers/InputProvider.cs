@@ -17,6 +17,9 @@ public class InputProvider : MonoBehaviour, IService
     [SerializeField] private float _xSensitivity;
     [SerializeField] private float _ySensitivity;
     [SerializeField] private MouseButton _shootingButton;
+    
+    private bool _isInputEnabled = true;
+
     private void Awake()
     {
         RegisterService();
@@ -35,35 +38,51 @@ public class InputProvider : MonoBehaviour, IService
 
     private void HandleMovementInput()
     {
-        Vector3 direction = Vector3.zero;
-    
-        direction += Input.GetKey(_moveForwardKey) ? Vector3.forward : Vector3.zero;
-        direction += Input.GetKey(_moveBackwardKey) ? Vector3.back : Vector3.zero;
-        direction += Input.GetKey(_moveLeftKey) ? Vector3.left : Vector3.zero;
-        direction += Input.GetKey(_moveRightKey) ? Vector3.right : Vector3.zero;
-        
-        bool shouldJump = Input.GetKeyDown(_jumpKey);
-        bool shouldShoot = Input.GetMouseButton((int)_shootingButton);
-        
-        MoveEvent?.Invoke(direction);
-        
-        if (shouldJump)
+        if (_isInputEnabled)
         {
-            JumpEvent?.Invoke();
-        }
+            Vector3 direction = Vector3.zero;
 
-        if (shouldShoot)
-        {
-            ShootEvent?.Invoke();
+            direction += Input.GetKey(_moveForwardKey) ? Vector3.forward : Vector3.zero;
+            direction += Input.GetKey(_moveBackwardKey) ? Vector3.back : Vector3.zero;
+            direction += Input.GetKey(_moveLeftKey) ? Vector3.left : Vector3.zero;
+            direction += Input.GetKey(_moveRightKey) ? Vector3.right : Vector3.zero;
+
+            bool shouldJump = Input.GetKeyDown(_jumpKey);
+            bool shouldShoot = Input.GetMouseButton((int)_shootingButton);
+
+            MoveEvent?.Invoke(direction);
+
+            if (shouldJump)
+            {
+                JumpEvent?.Invoke();
+            }
+
+            if (shouldShoot)
+            {
+                ShootEvent?.Invoke();
+            }
         }
     }
 
     private void HandleRotateInput()
     {
-        Vector2 rotateDirection = Vector2.zero;
-        rotateDirection.x = -Input.GetAxis("Mouse Y") * _ySensitivity;
-        rotateDirection.y = Input.GetAxis("Mouse X") * _xSensitivity;
-        RotateEvent?.Invoke(rotateDirection);
+        if (_isInputEnabled)
+        {
+            Vector2 rotateDirection = Vector2.zero;
+            rotateDirection.x = -Input.GetAxis("Mouse Y") * _ySensitivity;
+            rotateDirection.y = Input.GetAxis("Mouse X") * _xSensitivity;
+            RotateEvent?.Invoke(rotateDirection);
+        }
+    }
+
+    public void EnableInput()
+    {
+        _isInputEnabled = true;
+    }
+
+    public void DisableInput()
+    {
+        _isInputEnabled = false;
     }
 
     public void RegisterService()
