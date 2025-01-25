@@ -3,8 +3,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private EnemyMovement _enemyMovement;
+    [SerializeField] private Transform _playerTransform;
 
-    private Transform _playerTransform;
     private bool _canMove = true;
 
     private void Update()
