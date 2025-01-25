@@ -25,6 +25,6 @@ public class GarbageManager : MonoBehaviour, IService
 
     public void UnregisterService()
     {
-        SL.Register(this);
+        SL.Unregister(this);
     }
 }

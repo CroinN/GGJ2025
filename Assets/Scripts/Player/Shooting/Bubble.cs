@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Bubble : MonoBehaviour
 {
@@ -16,15 +19,12 @@ public class Bubble : MonoBehaviour
     {
         _direction = direction;
         initialSpeed += Random.Range(-speedOffset, speedOffset);
-        StartCoroutine(Pop());
+        Destroy(gameObject, duration+1);
     }
 
-    IEnumerator Pop()
+    private void Pop()
     {
-        yield return new WaitForSeconds(duration);
-        
         Instantiate(particle, transform.position, Quaternion.identity, SL.Get<GarbageManager>().garbageParent);
-        Destroy(gameObject);
     }
 
     private void Update()
@@ -32,5 +32,10 @@ public class Bubble : MonoBehaviour
         _timeElapsed += Time.deltaTime;
         
         transform.position += _direction * (curve.Evaluate(Mathf.Clamp01(_timeElapsed/duration)) * initialSpeed * Time.deltaTime);
+    }
+    
+    private void OnDestroy()
+    {
+        Pop();
     }
 }
