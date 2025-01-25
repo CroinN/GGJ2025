@@ -8,7 +8,7 @@ public class FluidWobble : MonoBehaviour
     private Material _fluidMaterial;
 
     [SerializeField] private float fluidPercent;
-    [SerializeField] private float foamSize;
+    [SerializeField] private float foamPercent;
 
     [SerializeField] private float recoverySpeed;
     [SerializeField] private float wobbleSpeed;
@@ -36,7 +36,7 @@ public class FluidWobble : MonoBehaviour
     private void Update()
     {
         _fluidMaterial.SetFloat("_FluidPercent", Mathf.Clamp01(fluidPercent));
-        _fluidMaterial.SetFloat("_FoamSize", Mathf.Clamp01(foamSize));
+        _fluidMaterial.SetFloat("_FoamPercent", Mathf.Clamp01(foamPercent));
 
         _wobbleAddX = Mathf.Lerp(_wobbleAddX, 0, recoverySpeed * Time.deltaTime);
         _wobbleAddZ = Mathf.Lerp(_wobbleAddZ, 0, recoverySpeed * Time.deltaTime);
