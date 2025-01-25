@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PlayerMovementController : MonoBehaviour
 {
+    [SerializeField] private LayerMask _groundCheckLayerMask;
+    [SerializeField] private Transform _groundCheckPosition;
+    [SerializeField] private float _groundCheckRadius;
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
     
@@ -14,13 +17,24 @@ public class PlayerMovementController : MonoBehaviour
 
     public void Move(Vector3 direciton)
     {
-        Vector3 velocity = direciton * _speed;
-        velocity.y = _rigidbody.velocity.y;
-        _rigidbody.velocity = velocity;
+        direciton = transform.right * direciton.x + transform.forward * direciton.z;
+        Vector3 position = transform.position + direciton * _speed;
+        
+        _rigidbody.MovePosition(position);
     }
 
     public void Jump()
     {
-        _rigidbody.AddForce(new Vector3(0f, _jumpForce, 0f), ForceMode.Impulse);
+        Collider[] colliders = Physics.OverlapSphere(_groundCheckPosition.position, _groundCheckRadius, _groundCheckLayerMask);
+
+        if (colliders.Length > 0)
+        {
+            _rigidbody.AddForce(new Vector3(0f, _jumpForce, 0f), ForceMode.Impulse);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(_groundCheckPosition.position, _groundCheckRadius);
     }
 }
