@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2231913883016538714}
   - component: {fileID: 6179376666606027282}
   m_Layer: 0
-  m_Name: garbageManager
+  m_Name: GarbageManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
