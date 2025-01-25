@@ -28,7 +28,7 @@ public class VendingMachine : MonoBehaviour
     public int GetPrice(Drink type) => priceList.Where(obj=>obj.type==type).ToArray()[0].price;
     
     [SerializeField] private Drink _selectedDrink;
-
+    
     private void Start()
     {
         _currencyManager = SL.Get<CurrencyManager>();
@@ -39,17 +39,19 @@ public class VendingMachine : MonoBehaviour
         _selectedDrink = type;
     }
 
-    public void Purchase(Drink type)
+    public void Purchase(Drink type, Action<bool> callback)
     {
         int price = GetPrice(type);
-        
-        if (_currencyManager.HasEnoughCurrency(price))
+        bool purchasePossible = _currencyManager.HasEnoughCurrency(price);
+        callback?.Invoke(purchasePossible);
+
+        if (purchasePossible)
         {
             _currencyManager.RemoveCurrency(price);
         }
         else
         {
-            // Notify that is not complete
+            // ...
         }
     }
 }

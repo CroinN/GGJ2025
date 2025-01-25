@@ -3,12 +3,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static string PlayerLayer = "Player";
-    
+        
     [SerializeField] private PlayerInputHandler _playerInputHandler;
     [SerializeField] private PlayerMovementController _playerMovementController;
     [SerializeField] private PlayerRotateController _playerRotateController;
     [SerializeField] private PlayerShootingController _playerShootingController;
-
     private void Awake()
     {   
         _playerInputHandler.MoveEvent += OnMove;

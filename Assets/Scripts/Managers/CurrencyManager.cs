@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class CurrencyManager : MonoBehaviour, IService
@@ -29,8 +28,12 @@ public class CurrencyManager : MonoBehaviour, IService
         bool hasEnoughCurrency = count <= _currencyCount;
         return hasEnoughCurrency;
     }
-    
-    
+
+    private void OnDestroy()
+    {
+        SL.Unregister(this);
+    }
+
     public void RegisterService()
     {
         SL.Register(this);
