@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BubbleInside
+  m_Name: Bubble
   m_Shader: {fileID: -6465566751694194690, guid: fa5c6cff7e35e463bb28deb34e8b043f,
     type: 3}
   m_Parent: {fileID: 0}
@@ -54,5 +54,6 @@ Material:
     - _Alpha: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
