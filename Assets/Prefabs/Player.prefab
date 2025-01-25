@@ -316,7 +316,7 @@ MonoBehaviour:
     m_Bits: 55
   _groundCheckPosition: {fileID: 2034247533873960571}
   _groundCheckRadius: 0.5
-  _speed: 5
+  _speed: 0.2
   _jumpForce: 6
 --- !u!114 &6267799578184596975
 MonoBehaviour:
