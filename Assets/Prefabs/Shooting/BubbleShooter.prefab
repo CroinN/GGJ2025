@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5337664575268352908}
   - component: {fileID: 659499436407309464}
   - component: {fileID: 1724126227593674953}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BubbleShooter
   m_TagString: Bubble
   m_Icon: {fileID: 0}
@@ -122,7 +122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startOffsetRadius: 0.18
   _endOffsetRadius: 0.76
-  _offsetLenght: 2
   _bubblesPerSecond: 100
   _shootingStartPoint: {fileID: 4711881851003983609}
   _shootingEndPoint: {fileID: 1412916641686901586}
@@ -137,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1412916641686901586}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootingEndPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -168,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4711881851003983609}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootingStartPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
