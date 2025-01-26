@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class WaveManager : MonoBehaviour, IService
@@ -17,7 +18,8 @@ public class WaveManager : MonoBehaviour, IService
 
     [SerializeField] private EnemiesManager _enemyManager;
 
-    [SerializeField] private Transform _spawningCube;
+    [SerializeField] private Transform _firstWagon;
+    [SerializeField] private Transform _secondWagon;
 
     [SerializeField] private List<Wave> _waves;
 
@@ -37,13 +39,17 @@ public class WaveManager : MonoBehaviour, IService
 
                 yield return subWave.y;
             }
+
+            yield return new WaitForSeconds(20);
         }
     }
 
     private void SpawnEnemies(Vector2Int subWave, Wave wave)
     {
-        Vector3 cubeCenter = _spawningCube.position;
-        Vector3 cubeScale = _spawningCube.localScale;
+        float prob = Random.Range(0, 1);
+        
+        Vector3 cubeCenter = prob > 0.5f ? _firstWagon.position : _secondWagon.position;
+        Vector3 cubeScale = _firstWagon.localScale;
 
         cubeScale /= 2;
 
