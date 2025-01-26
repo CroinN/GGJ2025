@@ -11,6 +11,7 @@ public class EnemyAttackController : MonoBehaviour
     [SerializeField] private float _attackCooldown;
     [SerializeField] private float _attackDistance;
     
+    private Tween _cooldownTween;
     private bool _isAttackInCooldown = false;
     
     private void Update()
@@ -28,12 +29,17 @@ public class EnemyAttackController : MonoBehaviour
         _navMeshAgent.enabled = false;
         _attackHitbox.gameObject.SetActive(true);
         
-        DOVirtual.DelayedCall(_attackCooldown, () =>
+        _cooldownTween = DOVirtual.DelayedCall(_attackCooldown, () =>
         {
             _navMeshAgent.enabled = true;
             _isAttackInCooldown = false;
             _attackHitbox.gameObject.SetActive(false);
         });
+    }
+
+    public void OnDie()
+    {
+        _cooldownTween.Kill();
     }
 
     public void SetPlayerTransform(Transform playerTransform)

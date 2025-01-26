@@ -32,4 +32,6 @@ public class EnemiesManager : MonoBehaviour
         newEnemy.Init(info, _playerTransform);
         _enemies.Add(newEnemy);
     }
+
+    public List<EnemyController> GetEnemies() => _enemies;
 }
