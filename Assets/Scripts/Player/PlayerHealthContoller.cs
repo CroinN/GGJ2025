@@ -30,7 +30,7 @@ public class PlayerHealthContoller : MonoBehaviour
     public void GetDamage(int damage)
     {
         _health -= damage;
-        _health = Mathf.Clamp(damage, 0, _maxHealth);
+        _health = Mathf.Clamp(_health, 0, _maxHealth);
         
         if (_health <= 0)
         {
