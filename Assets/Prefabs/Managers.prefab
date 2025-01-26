@@ -193,7 +193,7 @@ MonoBehaviour:
     xModifier: 0
     x12Modifier: 0.2
     x14Modifier: 0.8
-  _playerSpeed: 8
+  _playerSpeed: 15
 --- !u!1 &1763205698664149973
 GameObject:
   m_ObjectHideFlags: 0

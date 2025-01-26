@@ -24,20 +24,29 @@ public class WaveManager : MonoBehaviour, IService
     [SerializeField] private List<Wave> _waves;
 
     [SerializeField] private float _playerSpeed;
+
+    private TrainController _trainController;
     
     IEnumerator RunWaves()
     {
-        foreach (var wave in _waves)
+        foreach (Wave wave in _waves)
         {
-            foreach (var subWave in wave.subWaves)
+            foreach (Vector2Int subWave in wave.subWaves)
             {
-                SpawnEnemies(subWave, wave);
-                while (_enemyManager.GetEnemies().Count > 0)
+                bool trainArrived = false;
+                _trainController.Arrive(() =>
+                {
+                    SpawnEnemies(subWave, wave);
+                    trainArrived = true;
+                });
+                while (!trainArrived || _enemyManager.GetEnemies().Count > 0)
                 {
                     yield return null;
                 }
+                
+                _trainController.Leave();
 
-                yield return subWave.y;
+                yield return new WaitForSeconds(subWave.y);
             }
             SL.Get<CurrencyManager>().AddCurrency(wave.waveReward);
             yield return new WaitForSeconds(10);
@@ -83,6 +92,7 @@ public class WaveManager : MonoBehaviour, IService
 
     private void Start()
     {
+        _trainController = SL.Get<TrainController>();
         StartCoroutine(RunWaves());
     }
 

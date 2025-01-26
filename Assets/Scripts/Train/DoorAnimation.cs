@@ -14,31 +14,32 @@ public class DoorAnimation : MonoBehaviour
     }
     [SerializeField] private List<Door> _doors;
 
-    public void OpenDoors()
+    public void OpenDoors(Action callback = null)
     {
+        Sequence sequence = DOTween.Sequence();
+        
         foreach (Door door in _doors)
         {
-            door.left.DOMove(door.left.position + transform.right, 1)
-                .SetEase(Ease.Linear);
-            door.right.DOMove(door.right.position - transform.right, 1)
-                .SetEase(Ease.Linear);
+            sequence.Join(door.left.DOMove(door.left.position + door.left.transform.forward, 1)
+                .SetEase(Ease.Linear));
+            sequence.Join(door.right.DOMove(door.right.position - door.left.transform.forward, 1)
+                .SetEase(Ease.Linear));
         }
+        
+        sequence.OnComplete(()=>callback?.Invoke());
     }
     
-    public void CloseDoors()
+    public void CloseDoors(Action callback = null)
     {
+        Sequence sequence = DOTween.Sequence();
         foreach (Door door in _doors)
         {
-            door.left.DOMove(door.left.position - transform.right, 1)
-                .SetEase(Ease.Linear);
-            door.right.DOMove(door.right.position + transform.right, 1)
-                .SetEase(Ease.Linear);
+            sequence.Join(door.left.DOMove(door.left.position - door.left.transform.forward, 1)
+                .SetEase(Ease.Linear));
+            sequence.Join(door.right.DOMove(door.right.position + door.left.transform.forward, 1)
+                .SetEase(Ease.Linear));
         }
-    }
 
-    private void Start()
-    {
-        OpenDoors();
-        DOVirtual.DelayedCall(5, CloseDoors);
+        sequence.OnComplete(()=>callback?.Invoke());
     }
 }
