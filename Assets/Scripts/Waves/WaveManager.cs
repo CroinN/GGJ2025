@@ -46,15 +46,17 @@ public class WaveManager : MonoBehaviour, IService
 
     private void SpawnEnemies(Vector2Int subWave, Wave wave)
     {
-        float prob = Random.Range(0, 1);
         
-        Vector3 cubeCenter = prob > 0.5f ? _firstWagon.position : _secondWagon.position;
-        Vector3 cubeScale = _firstWagon.localScale;
-
-        cubeScale /= 2;
 
         for (int i = 0; i < subWave.x; i++)
         {
+            int prob = Random.Range(0, 100);
+
+            Vector3 cubeCenter = prob > 50 ? _firstWagon.position : _secondWagon.position;
+            Vector3 cubeScale = prob > 50 ? _firstWagon.localScale : _secondWagon.localScale;;
+
+            cubeScale /= 2;
+            
             Vector3 position = new Vector3(
                 Random.Range(cubeCenter.x - cubeScale.x, cubeCenter.x + cubeScale.x),
                 cubeCenter.y,
