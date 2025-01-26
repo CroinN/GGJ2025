@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class EnemyHealthController : MonoBehaviour
 {
     [SerializeField] private EnemyAnimationController _enemyAnimationController;
+    [SerializeField] private EnemyAttackController _enemyAttackController;
     [SerializeField] private NavMeshAgent _navMeshAgent;
     
     private int _health = 100;
@@ -28,6 +29,7 @@ public class EnemyHealthController : MonoBehaviour
             _isDead = true;
             _navMeshAgent.enabled = false;
             _enemyAnimationController.OnDie();
+            _enemyAttackController.OnDie();
             DOVirtual.DelayedCall(5, () => Destroy(gameObject));
         }
     }

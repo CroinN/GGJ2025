@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class PlayerInfoManager : MonoBehaviour, IService
 {
    [SerializeField] private Slider _healthbar;
+   [SerializeField] private Slider _ammobar;
    [SerializeField] private Transform _playerTransform;
    
    public Transform PlayerTransform{ get => _playerTransform; set => _playerTransform = value; }
@@ -11,6 +12,11 @@ public class PlayerInfoManager : MonoBehaviour, IService
    public void UpdateHealth(float healthFactor)
    {
       _healthbar.value = healthFactor;
+   }
+
+   public void UpdateAmmo(float ammoFactor)
+   {
+      _ammobar.value = ammoFactor;  
    }
    
    private void Awake()
