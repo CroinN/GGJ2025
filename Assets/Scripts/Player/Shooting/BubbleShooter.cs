@@ -140,30 +140,7 @@ public class BubbleShooter : MonoBehaviour
         DOVirtual.DelayedCall(cooldownTime, () => { _isInCooldown = false; });
     }
 
-    private void OnDrawGizmos()
-    {
-        Vector3 normal = transform.forward;
-
-        Handles.DrawWireArc(_shootingStartPoint.position, normal, transform.up, 360, _startOffsetRadius);
-        Handles.DrawWireArc(_shootingEndPoint.position, normal, transform.up, 360, _endOffsetRadius);
-
-        int lineCount = 36;
-
-        Vector3 tangent = Vector3.Cross(normal, Vector3.right).normalized;
-        
-        Vector3 bitangent = Vector3.Cross(normal, tangent);
-
-        for (int i = 0; i < lineCount; i++)
-        {
-            float angle = (i / (float)lineCount) * Mathf.PI * 2.0f;
-
-            Vector3 offset = (tangent * Mathf.Cos(angle) + bitangent * Mathf.Sin(angle));
-            Vector3 from = _shootingStartPoint.position + offset*_startOffsetRadius;
-            Vector3 to = _shootingEndPoint.position + offset*_endOffsetRadius;
-            Gizmos.DrawLine(from, to);
-        }
-    }
-  
+    
     public static Vector3 GetRandomPositionInCircle(Vector3 center, float radius, Vector3 normal)
     {
         Vector3 unitNormal = normal.normalized;
