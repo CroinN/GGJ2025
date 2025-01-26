@@ -47,6 +47,7 @@ MonoBehaviour:
   _enemyPrefab: {fileID: 9127607025143665870, guid: f8793e9bdecc54810be899d98fa05cce,
     type: 3}
   _enemies: []
+  _playerTransform: {fileID: 0}
 --- !u!1 &1036017327496758011
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyManager: {fileID: 8753676979325955328}
-  _spawningCube: {fileID: 0}
+  _firstWagon: {fileID: 0}
+  _secondWagon: {fileID: 0}
   _waves:
   - subWaves:
     - {x: 5, y: 15}
@@ -191,7 +193,7 @@ MonoBehaviour:
     xModifier: 0
     x12Modifier: 0.2
     x14Modifier: 0.8
-  _playerSpeed: 0
+  _playerSpeed: 15
 --- !u!1 &1763205698664149973
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +296,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: d15e145fc549e42b1ad37ffa653e11a6, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &4271248461753053976
 GameObject:
@@ -488,8 +490,8 @@ MonoBehaviour:
   _moveLeftKey: 97
   _moveRightKey: 100
   _jumpKey: 32
-  _xSensitivity: 20
-  _ySensitivity: 20
+  _xSensitivity: 3
+  _ySensitivity: 3
   _shootingButton: 0
 --- !u!1 &8967530578716046083
 GameObject:

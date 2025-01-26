@@ -1,14 +1,25 @@
+using System;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
-public class EnemiesManager : MonoBehaviour
+public class EnemiesManager : MonoBehaviour, IService
 {
     [SerializeField] private EnemyController _enemyPrefab;
     [SerializeField, ReadOnly] private List<EnemyController> _enemies;
     
     private PlayerInfoManager _playerInfoManager;
-    private Transform _playerTransform => _playerInfoManager.PlayerTransform;
+    [SerializeField] private Transform _playerTransform;
+
+    private void Awake()
+    {
+        RegisterService();
+    }
+
+    private void OnDestroy()
+    {
+        UnregisterService();
+    }
 
     private void Start()
     {
@@ -33,5 +44,19 @@ public class EnemiesManager : MonoBehaviour
         _enemies.Add(newEnemy);
     }
 
+    public void RemoveEnemy(EnemyController enemy)
+    {
+        _enemies.Remove(enemy);
+    }
+
     public List<EnemyController> GetEnemies() => _enemies;
+    public void RegisterService()
+    {
+        SL.Register(this);
+    }
+
+    public void UnregisterService()
+    {
+        SL.Unregister(this);
+    }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -20,5 +21,10 @@ public class EnemyController : MonoBehaviour
         _enemyMovement.SetSpeed(info.moveSpeed);
         _enemyAttackController.SetPlayerTransform(_playerTransform);
         _enemyHealthController.SetHealth(info.health);
+    }
+
+    private void OnDestroy()
+    {
+        SL.Get<EnemiesManager>().RemoveEnemy(this);
     }
 }

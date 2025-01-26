@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class WaveManager : MonoBehaviour, IService
@@ -17,38 +18,76 @@ public class WaveManager : MonoBehaviour, IService
 
     [SerializeField] private EnemiesManager _enemyManager;
 
-    [SerializeField] private Transform _spawningCube;
+    [SerializeField] private Transform _firstWagon;
+    [SerializeField] private Transform _secondWagon;
 
     [SerializeField] private List<Wave> _waves;
 
     [SerializeField] private float _playerSpeed;
+
+    private TrainController _trainController;
     
     IEnumerator RunWaves()
     {
-        foreach (var wave in _waves)
+        foreach (Wave wave in _waves)
         {
-            foreach (var subWave in wave.subWaves)
+            foreach (Vector2Int subWave in wave.subWaves)
             {
-                SpawnEnemies(subWave, wave);
-                while (_enemyManager.GetEnemies().Count > 0)
+                bool trainArrived = false;
+                _trainController.Arrive(() =>
+                {
+                    SpawnEnemies(subWave, wave);
+                    trainArrived = true;
+                });
+                while (!trainArrived || _enemyManager.GetEnemies().Count > 0)
                 {
                     yield return null;
                 }
+                
+                _trainController.Leave();
 
-                yield return subWave.y;
+                yield return new WaitForSeconds(subWave.y);
             }
+            SL.Get<CurrencyManager>().AddCurrency(wave.waveReward);
+            yield return new WaitForSeconds(10);
+        }
+
+        while (true)
+        {
+            foreach (Vector2Int subWave in _waves[5].subWaves)
+            {
+                bool trainArrived = false;
+                _trainController.Arrive(() =>
+                {
+                    SpawnEnemies(subWave, _waves[5]);
+                    trainArrived = true;
+                });
+                while (!trainArrived || _enemyManager.GetEnemies().Count > 0)
+                {
+                    yield return null;
+                }
+                
+                _trainController.Leave();
+
+                yield return new WaitForSeconds(subWave.y);
+            }
+            
+            SL.Get<CurrencyManager>().AddCurrency(100);
+            yield return new WaitForSeconds(10);
         }
     }
 
     private void SpawnEnemies(Vector2Int subWave, Wave wave)
     {
-        Vector3 cubeCenter = _spawningCube.position;
-        Vector3 cubeScale = _spawningCube.localScale;
-
-        cubeScale /= 2;
-
         for (int i = 0; i < subWave.x; i++)
         {
+            int prob = Random.Range(0, 100);
+
+            Vector3 cubeCenter = prob > 50 ? _firstWagon.position : _secondWagon.position;
+            Vector3 cubeScale = prob > 50 ? _firstWagon.localScale : _secondWagon.localScale;;
+
+            cubeScale /= 2;
+            
             Vector3 position = new Vector3(
                 Random.Range(cubeCenter.x - cubeScale.x, cubeCenter.x + cubeScale.x),
                 cubeCenter.y,
@@ -75,6 +114,7 @@ public class WaveManager : MonoBehaviour, IService
 
     private void Start()
     {
+        _trainController = SL.Get<TrainController>();
         StartCoroutine(RunWaves());
     }
 
