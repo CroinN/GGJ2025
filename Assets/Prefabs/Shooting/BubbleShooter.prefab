@@ -125,7 +125,8 @@ MonoBehaviour:
   _bubblesPerSecond: 100
   _shootingStartPoint: {fileID: 4711881851003983609}
   _shootingEndPoint: {fileID: 1412916641686901586}
-  _damage: 5
+  _damage: 2
+  _ammoMaxCount: 500
   _bubblePrefabs:
   - {fileID: 7770099820894358684, guid: e1e98239ca20c468b8062124ebdd1e6c, type: 3}
   - {fileID: 331781943044537374, guid: 6458e91efd5e14120bcbebb0d4c36fc0, type: 3}
