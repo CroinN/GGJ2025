@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BottlePlasticMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 712f559e6bafd3b4cb7080663a505027,
+  m_Shader: {fileID: -6465566751694194690, guid: 0b6df70adcc20a347910ce5d6d928b4b,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -135,7 +135,9 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HighlightColor: {r: 0.87358487, g: 0.97600883, b: 1, a: 1}
-    - _MainColor: {r: 0.3434033, g: 0.7764186, b: 0.8792453, a: 0.13725491}
+    - _MainColor: {r: 0.34340328, g: 0.77641857, b: 0.8792453, a: 0.27450982}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _ShadowColor: {r: 0.2003631, g: 0.41779956, b: 0.9924528, a: 0.54509807}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

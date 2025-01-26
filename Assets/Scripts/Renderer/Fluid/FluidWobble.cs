@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
 public class FluidWobble : MonoBehaviour
 {
     private Transform _transform;

@@ -5,6 +5,17 @@ using Random = UnityEngine.Random;
 
 public class BubbleShooter : MonoBehaviour
 {
+    [SerializeField] private Animator _playerAnimator;
+
+    [SerializeField] private Transform _bottles;
+    [SerializeField] private float _delayReloadMid;
+    [SerializeField] private float _delayReloadFull;
+
+    [SerializeField] private PlayerHealthContoller _playerHealthContoller;
+    [SerializeField] private float _delayHealingMid;
+    [SerializeField] private float _delayHealingMidd;
+    [SerializeField] private float _delayHealingFull;
+
     [SerializeField] private float _startOffsetRadius;
     [SerializeField] private float _endOffsetRadius;
 
@@ -18,9 +29,12 @@ public class BubbleShooter : MonoBehaviour
 
     private PlayerInfoManager _playerInfoManager;
     private InventoryManager _inventoryManager;
+
     private int _ammoType;
     private int _ammoCount;
+
     private bool _isInCooldown = false;
+    private bool _canShoot = true;
 
     private void Start()
     {
@@ -59,18 +73,54 @@ public class BubbleShooter : MonoBehaviour
         if(index != -1 && _inventoryManager.GetItem((VendingMachine.Drink)index)>0)
         {
             _inventoryManager.UseItem((VendingMachine.Drink)index);
+
             if (index != 2)
             {
-                _ammoType = index;
-                _ammoCount = _ammoMaxCount;
-                _playerInfoManager.UpdateAmmo((float)_ammoCount/(float)_ammoMaxCount);
+                _playerAnimator.SetTrigger("Reload");
+
+                DOVirtual.DelayedCall(_delayReloadMid, () =>
+                {
+                    _bottles.GetChild(_ammoType).gameObject.SetActive(false);
+                    _ammoType = index;
+                    _bottles.GetChild(_ammoType).gameObject.SetActive(true);
+                });
+
+                DOVirtual.DelayedCall(_delayReloadFull, () =>
+                {
+                    _ammoCount = _ammoMaxCount;
+                    _playerInfoManager.UpdateAmmo((float)_ammoCount / (float)_ammoMaxCount);
+                });
+            }
+            else
+            {
+                _playerAnimator.SetTrigger("Heal");
+
+                _canShoot = false;
+
+                DOVirtual.DelayedCall(_delayHealingMid, () =>
+                {
+                    _bottles.GetChild(_ammoType).gameObject.SetActive(false);
+                    _bottles.GetChild(2).gameObject.SetActive(true);
+                });
+
+                DOVirtual.DelayedCall(_delayHealingMidd, () =>
+                {
+                    _playerHealthContoller.GetHeal(200);
+                    _canShoot = true;
+                });
+
+                DOVirtual.DelayedCall(_delayHealingFull, () =>
+                {
+                    _bottles.GetChild(2).gameObject.SetActive(false);
+                    _bottles.GetChild(_ammoType).gameObject.SetActive(true);
+                });
             }
         }
     }
 
     public void Shoot()
     {
-        if (!_isInCooldown && _ammoCount > 0)
+        if (!_isInCooldown && _ammoCount > 0 && _canShoot)
         {
             _ammoCount = Mathf.Clamp(--_ammoCount, 0, _ammoMaxCount);
             _playerInfoManager.UpdateAmmo((float)_ammoCount/(float)_ammoMaxCount);

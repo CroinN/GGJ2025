@@ -409,7 +409,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0.004, y: 0.001, z: -0.614}
+        value: {x: 0.004, y: 0.001, z: -0.635}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -436,7 +436,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 2
-        value: {x: 0.004, y: 0.001, z: -0.614}
+        value: {x: 0.004, y: 0.001, z: -0.635}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -512,7 +512,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -521,7 +521,7 @@ AnimationClip:
         outWeight: 0
       - serializedVersion: 3
         time: 2
-        value: 0
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -532,7 +532,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: R_arm/R_elbow/R_wrist/Bubblegun/Bottle Placer Weapon
+    path: R_arm/R_elbow/R_wrist/BubbleShooter/Bottle Placer Weapon
     classID: 1
     script: {fileID: 0}
     flags: 0
@@ -635,7 +635,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1666450281
+      path: 2548989721
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -2111,7 +2111,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.614
+        value: -0.635
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2138,7 +2138,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2
-        value: -0.614
+        value: -0.635
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2159,7 +2159,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -2168,7 +2168,7 @@ AnimationClip:
         outWeight: 0
       - serializedVersion: 3
         time: 2
-        value: 0
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -2179,7 +2179,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: R_arm/R_elbow/R_wrist/Bubblegun/Bottle Placer Weapon
+    path: R_arm/R_elbow/R_wrist/BubbleShooter/Bottle Placer Weapon
     classID: 1
     script: {fileID: 0}
     flags: 0
