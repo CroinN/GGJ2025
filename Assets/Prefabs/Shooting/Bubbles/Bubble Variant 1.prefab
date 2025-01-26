@@ -85,6 +85,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7770099820894358684, guid: e1e98239ca20c468b8062124ebdd1e6c,
         type: 3}
+      propertyPath: _damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770099820894358684, guid: e1e98239ca20c468b8062124ebdd1e6c,
+        type: 3}
       propertyPath: _particle
       value: 
       objectReference: {fileID: 5239484827368082290, guid: 44037cedc7b474b0dbe241b21d2000fc,

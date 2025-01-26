@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: JermukBottlePlasticMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 712f559e6bafd3b4cb7080663a505027,
+  m_Shader: {fileID: -6465566751694194690, guid: 0b6df70adcc20a347910ce5d6d928b4b,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -134,8 +134,10 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HighlightColor: {r: 0.11836946, g: 0.28206313, b: 0.6603774, a: 1}
-    - _MainColor: {r: 0.04296903, g: 0.11802679, b: 0.3207547, a: 0.7607843}
-    - _ShadowColor: {r: 0.03333299, g: 0.065347746, b: 0.2030631, a: 1}
+    - _HighlightColor: {r: 0.13766532, g: 0.65882355, b: 0.117647044, a: 1}
+    - _MainColor: {r: 0.18934925, g: 0.645283, b: 0.16923454, a: 0.7607843}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _ShadowColor: {r: 0.10040371, g: 0.2830189, b: 0.08704164, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

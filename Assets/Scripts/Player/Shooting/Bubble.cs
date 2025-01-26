@@ -15,7 +15,7 @@ public class Bubble : MonoBehaviour
     private Rigidbody _rigidbody;
     private Vector3 _direction;
     private float _timeElapsed;
-    private int _damage;
+    [SerializeField] private int _damage;
 
     public int Damage => _damage;
 
@@ -27,7 +27,6 @@ public class Bubble : MonoBehaviour
     public void Init(Vector3 direction, int damage)
     {
         _direction = direction;
-        _damage = damage;
         _initialSpeed += Random.Range(-_speedOffset, _speedOffset);
         Destroy(gameObject, _duration+1);
     }
