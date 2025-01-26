@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerInfoManager : MonoBehaviour, IService
 {
-   private Transform _playerTransform;
+   [SerializeField] private Transform _playerTransform;
    
    public Transform PlayerTransform{ get => _playerTransform; set => _playerTransform = value; }
 
