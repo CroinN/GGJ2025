@@ -14,8 +14,7 @@ public class VendingMachineController : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text _priceText;
     [SerializeField] private TMPro.TMP_Text _nameText;
     
-    [SerializeField] private Renderer _player;
-    [SerializeField] private Renderer _bubbleGun;
+    [SerializeField] private Transform _player;
 
     [SerializeField] private List<VendingMachine.Drink> _drinks;
     [SerializeField] private VendingMachineTrigger _trigger;
@@ -67,8 +66,7 @@ public class VendingMachineController : MonoBehaviour
         if (_state == VendingMachineState.Idle)
         {
             SwitchMainCamera();
-            _player.enabled = true;
-            _bubbleGun.enabled = true;
+            _player.gameObject.SetActive(true);
             SL.Get<UIManager>().DisableVendingText();
             SL.Get<InputProvider>().EnableInput();
         }
@@ -78,8 +76,7 @@ public class VendingMachineController : MonoBehaviour
         }
         else if (_state == VendingMachineState.InMenu)
         {
-            _player.enabled = false;
-            _bubbleGun.enabled = false;        
+            _player.gameObject.SetActive(false);
             SwitchVendingMachineCamera();   
             SL.Get<UIManager>().DisableVendingText();
             SL.Get<InputProvider>().DisableInput();
