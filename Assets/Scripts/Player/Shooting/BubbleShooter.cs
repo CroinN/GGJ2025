@@ -16,6 +16,7 @@ public class BubbleShooter : MonoBehaviour
     [SerializeField] private Transform _shootingStartPoint;
     [SerializeField] private Transform _shootingEndPoint;
     [SerializeField] private Bubble _bubblePrefab;
+    [SerializeField] private int _damage;
 
     private bool _isInCooldown = false;
 
@@ -29,7 +30,7 @@ public class BubbleShooter : MonoBehaviour
 
             Bubble bubble = Instantiate(_bubblePrefab, start, Quaternion.identity, 
                 SL.Get<GarbageManager>().garbageParent);
-            bubble.Init((end - start).normalized);
+            bubble.Init((end - start).normalized, _damage);
         }
     }
 

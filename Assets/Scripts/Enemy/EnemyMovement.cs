@@ -12,6 +12,9 @@ public class EnemyMovement : MonoBehaviour
     
     public void SetDestination(Vector3 destination)
     {
-        _navMeshAgent.destination = destination;
+        if (_navMeshAgent.enabled)
+        {
+            _navMeshAgent.destination = destination;
+        }
     }
 }
