@@ -146,6 +146,9 @@ MonoBehaviour:
   _enemyAnimationController: {fileID: 5272148247407514672}
   _enemyAttackController: {fileID: 3757846301889714798}
   _navMeshAgent: {fileID: 4066760548578218705}
+  _skinnedMeshRenderer: {fileID: 8260325085002273402}
+  _fireMaterial: {fileID: 2100000, guid: 597b99480b58ce94b979dcd325ff4c01, type: 2}
+  _unfireMaterial: {fileID: 2100000, guid: 3f5dc4210fd8a0744a4904d26f3793d8, type: 2}
 --- !u!114 &290006974021820381
 MonoBehaviour:
   m_ObjectHideFlags: 0

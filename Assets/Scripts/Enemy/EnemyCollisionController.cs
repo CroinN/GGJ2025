@@ -20,5 +20,10 @@ public class EnemyCollisionController : MonoBehaviour
         {
             _enemyMovement.FreezeEffect();
         }
+
+        if (other.CompareTag("Fire"))
+        {
+            _enemyHealthController.FireEffect();
+        }
     }
 }

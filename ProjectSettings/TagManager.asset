@@ -8,6 +8,7 @@ TagManager:
   - EnemyAttackHitbox
   - Coin
   - Freeze
+  - Fire
   layers:
   - Default
   - TransparentFX
