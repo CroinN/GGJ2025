@@ -435,6 +435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ee26f19b96b420fac5530af1dc292b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthbar: {fileID: 241765996354067171}
   _playerTransform: {fileID: 0}
 --- !u!1 &8848437490825388298
 GameObject:
@@ -567,16 +568,53 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1606801189835138949, guid: aa890831251874dddbda910fb1c097f3,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606801189835138949, guid: aa890831251874dddbda910fb1c097f3,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3804746261099777057, guid: aa890831251874dddbda910fb1c097f3,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3942730738906466794, guid: aa890831251874dddbda910fb1c097f3,
         type: 3}
       propertyPath: m_Name
       value: UIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389550630771534249, guid: aa890831251874dddbda910fb1c097f3,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5389550630771534249, guid: aa890831251874dddbda910fb1c097f3,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa890831251874dddbda910fb1c097f3, type: 3}
+--- !u!114 &241765996354067171 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2060196852596386179, guid: aa890831251874dddbda910fb1c097f3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2291671385406272352}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1376260746136742961 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 924595961917480785, guid: aa890831251874dddbda910fb1c097f3,
