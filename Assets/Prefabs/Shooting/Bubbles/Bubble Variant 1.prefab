@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3755134964068522030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2879678334374961973}
+  - component: {fileID: 5249962608722626928}
+  m_Layer: 8
+  m_Name: Sphere (1)
+  m_TagString: Fire
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2879678334374961973
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3755134964068522030}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 944250290253917661}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &5249962608722626928
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3755134964068522030}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &8020428756872261762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85,17 +138,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7770099820894358684, guid: e1e98239ca20c468b8062124ebdd1e6c,
         type: 3}
-      propertyPath: _damage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7770099820894358684, guid: e1e98239ca20c468b8062124ebdd1e6c,
-        type: 3}
       propertyPath: _particle
       value: 
       objectReference: {fileID: 5239484827368082290, guid: 44037cedc7b474b0dbe241b21d2000fc,
         type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7085551820693970271, guid: e1e98239ca20c468b8062124ebdd1e6c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2879678334374961973}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1e98239ca20c468b8062124ebdd1e6c, type: 3}
+--- !u!4 &944250290253917661 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7085551820693970271, guid: e1e98239ca20c468b8062124ebdd1e6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8020428756872261762}
+  m_PrefabAsset: {fileID: 0}
