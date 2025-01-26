@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -51,7 +52,7 @@ public class Bubble : MonoBehaviour
     {
         if ( (_popingLayerMask & (1 << other.gameObject.layer)) == 0)
         {
-            Destroy(gameObject);
+            DOVirtual.DelayedCall(0.1f, () => Destroy(gameObject));
         }
     }
 }
