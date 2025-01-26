@@ -7,6 +7,7 @@ public class EnemyHealthController : MonoBehaviour
     [SerializeField] private EnemyAnimationController _enemyAnimationController;
     [SerializeField] private EnemyAttackController _enemyAttackController;
     [SerializeField] private NavMeshAgent _navMeshAgent;
+    [SerializeField] private Transform _currencyPrefab;
     
     private int _health = 100;
     private bool _isDead = false;
@@ -31,6 +32,7 @@ public class EnemyHealthController : MonoBehaviour
             _enemyAnimationController.OnDie();
             _enemyAttackController.OnDie();
             DOVirtual.DelayedCall(5, () => Destroy(gameObject));
+            Instantiate(_currencyPrefab, transform.position, Quaternion.identity);
         }
     }
 

@@ -146,6 +146,8 @@ MonoBehaviour:
   _enemyAnimationController: {fileID: 5272148247407514672}
   _enemyAttackController: {fileID: 3757846301889714798}
   _navMeshAgent: {fileID: 4066760548578218705}
+  _currencyPrefab: {fileID: 6975472269532433724, guid: 5daee4cbe1d9a4616a571a35a4e625a9,
+    type: 3}
 --- !u!114 &290006974021820381
 MonoBehaviour:
   m_ObjectHideFlags: 0
