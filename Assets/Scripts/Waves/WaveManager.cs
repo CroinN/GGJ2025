@@ -39,8 +39,8 @@ public class WaveManager : MonoBehaviour, IService
 
                 yield return subWave.y;
             }
-
-            yield return new WaitForSeconds(20);
+            SL.Get<CurrencyManager>().AddCurrency(wave.waveReward);
+            yield return new WaitForSeconds(10);
         }
     }
 
