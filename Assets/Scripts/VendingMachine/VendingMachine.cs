@@ -9,10 +9,10 @@ public class VendingMachine : MonoBehaviour
 {  
     public enum Drink
     {
-        Cola,
-        Fanta,
-        Jermuk,
-        Sprite
+        Cola = 0,
+        Fanta = 1,
+        Jermuk = 2,
+        Sprite = 3
     }
     
     [Serializable]

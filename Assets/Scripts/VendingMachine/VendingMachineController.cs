@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class VendingMachineController : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class VendingMachineController : MonoBehaviour
         Idle
     }
 
+    [SerializeField] private TMPro.TMP_Text _priceText;
+    [SerializeField] private TMPro.TMP_Text _nameText;
+    
     [SerializeField] private Renderer _player;
     [SerializeField] private Renderer _bubbleGun;
 
@@ -22,7 +26,7 @@ public class VendingMachineController : MonoBehaviour
 
     [SerializeField] VendingMachineState _state = VendingMachineState.Idle;
 
-    [SerializeField] int _currentDrink;
+    [FormerlySerializedAs("_currentDrink")] [SerializeField] int _currentDrinkIndex;
 
     [SerializeField] private List<GameObject> _colas;
     [SerializeField] private List<GameObject> _fantas;
@@ -51,7 +55,7 @@ public class VendingMachineController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.A)) ShiftPosition(-1);
             else if (Input.GetKeyDown(KeyCode.D)) ShiftPosition(1);
-            else if (Input.GetKeyDown(KeyCode.Return)) _vendingMachine.Purchase(_drinks[_currentDrink], OnPurchaseComplete);
+            else if (Input.GetKeyDown(KeyCode.Return)) _vendingMachine.Purchase(_drinks[_currentDrinkIndex], OnPurchaseComplete);
             else if(Input.GetKeyDown(KeyCode.Escape)) ChangeState(VendingMachineState.Idle);
         }
     }
@@ -86,7 +90,8 @@ public class VendingMachineController : MonoBehaviour
     {
         if (isSuccessful)
         {
-            _animationController.animations[_drinks[_currentDrink]].Invoke();
+            _animationController.animations[_drinks[_currentDrinkIndex]].Invoke();
+            SL.Get<InventoryManager>().AddItem(_drinks[_currentDrinkIndex]);
             Debug.Log("PURCHASE IS SUCCESSFUL");
         }
         else
@@ -108,27 +113,33 @@ public class VendingMachineController : MonoBehaviour
 
     private void ShiftPosition(int direction)
     {
-        _currentDrink = (_currentDrink + direction) % _drinks.Count;
-        if(_currentDrink < 0){
-            _currentDrink = _drinks.Count-1;
+        _currentDrinkIndex = (_currentDrinkIndex + direction) % _drinks.Count;
+        VendingMachine.Drink currentDrink = _drinks[_currentDrinkIndex];
+        if(_currentDrinkIndex < 0){
+            _currentDrinkIndex = _drinks.Count-1;
         }
 
-        if (_drinks[_currentDrink] == VendingMachine.Drink.Cola)
+        if (currentDrink == VendingMachine.Drink.Cola)
         {
             Highlight(_colas);
+            _nameText.SetText("Cola");
         }
-        else if (_drinks[_currentDrink] == VendingMachine.Drink.Fanta)
+        else if (currentDrink == VendingMachine.Drink.Fanta)
         {
             Highlight(_fantas);
+            _nameText.SetText("Fanta");
         }
-        else if (_drinks[_currentDrink] == VendingMachine.Drink.Sprite)
+        else if (currentDrink == VendingMachine.Drink.Sprite)
         {
             Highlight(_sprites);
+            _nameText.SetText("Sprite");
         }
-        else if (_drinks[_currentDrink] == VendingMachine.Drink.Jermuk)
+        else if (currentDrink == VendingMachine.Drink.Jermuk)
         {
             Highlight(_jermuks);
+            _nameText.SetText("Jermuk");
         }
+        _priceText.SetText("Price: " + _vendingMachine.GetPrice(currentDrink));
     }
 
     private void Highlight(List<GameObject> objects)
