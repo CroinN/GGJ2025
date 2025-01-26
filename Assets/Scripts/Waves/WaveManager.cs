@@ -23,16 +23,20 @@ public class WaveManager : MonoBehaviour, IService
 
     [SerializeField] private float _playerSpeed;
     
-    IEnumerator RunWave(Wave wave)
+    IEnumerator RunWaves()
     {
-        foreach (var subWave in wave.subWaves)
+        foreach (var wave in _waves)
         {
-            SpawnEnemies(subWave, wave);
-            while (_enemyManager.GetEnemies().Count > 0)
+            foreach (var subWave in wave.subWaves)
             {
-                yield return null;
+                SpawnEnemies(subWave, wave);
+                while (_enemyManager.GetEnemies().Count > 0)
+                {
+                    yield return null;
+                }
+
+                yield return subWave.y;
             }
-            yield return subWave.y;
         }
     }
 
@@ -47,15 +51,16 @@ public class WaveManager : MonoBehaviour, IService
         {
             Vector3 position = new Vector3(
                 Random.Range(cubeCenter.x - cubeScale.x, cubeCenter.x + cubeScale.x),
-                Random.Range(cubeCenter.y - cubeScale.y, cubeCenter.y + cubeScale.y),
+                cubeCenter.y,
                 Random.Range(cubeCenter.z - cubeScale.z, cubeCenter.z + cubeScale.z)
             );
-            EnemyInfo info = new EnemyInfo();
-            info.position = position;
-            info.damage = 15;
-            info.health = 100;
-            
-            info.moveSpeed = GetSpeed(wave);
+            EnemyInfo info = new EnemyInfo
+            {
+                position = position,
+                damage = 15,
+                health = 100,
+                moveSpeed = GetSpeed(wave)
+            };
             _enemyManager.CreateEnemy(info);
         }
     }
@@ -70,7 +75,7 @@ public class WaveManager : MonoBehaviour, IService
 
     private void Start()
     {
-        StartCoroutine(RunWave(_waves[0]));
+        StartCoroutine(RunWaves());
     }
 
     private void Awake()

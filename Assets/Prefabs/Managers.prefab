@@ -239,6 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ad48616f34584941b8a4bf3377170df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemyManager: {fileID: 8753676979325955328}
+  _spawningCube: {fileID: 0}
   _waves:
   - subWaves:
     - {x: 5, y: 15}
@@ -291,6 +293,7 @@ MonoBehaviour:
     xModifier: 0
     x12Modifier: 0.2
     x14Modifier: 0.8
+  _playerSpeed: 0
 --- !u!1 &1763205698664149973
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ee26f19b96b420fac5530af1dc292b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerTransform: {fileID: 0}
 --- !u!1 &8848437490825388298
 GameObject:
   m_ObjectHideFlags: 0
