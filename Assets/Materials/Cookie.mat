@@ -134,8 +134,10 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HighlightColor: {r: 1, g: 1, b: 1, a: 0}
-    - _MainColor: {r: 0.8584906, g: 0.7498518, b: 0.56287825, a: 0}
-    - _ShadowColor: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 0}
+    - _HighlightColor: {r: 0.4490565, g: 0.4490565, b: 0.4490565, a: 1}
+    - _MainColor: {r: 0.9169811, g: 0.7083477, b: 0.35814163, a: 1}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _ShadowColor: {r: 0.6301887, g: 0.41374636, b: 0.1938127, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

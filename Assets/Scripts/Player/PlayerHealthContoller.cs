@@ -19,10 +19,18 @@ public class PlayerHealthContoller : MonoBehaviour
         _playerInfoManager.UpdateHealth(1);
     }
 
+    public void GetHeal(int point)
+    {
+        _health += point;
+        Mathf.Clamp(_health, 0, _maxHealth);
+
+        _playerInfoManager.UpdateHealth((float)_health / (float)_maxHealth);
+    }
+
     public void GetDamage(int damage)
     {
         _health -= damage;
-        Mathf.Clamp(damage, 0, _health);
+        _health = Mathf.Clamp(damage, 0, _maxHealth);
         
         if (_health <= 0)
         {
