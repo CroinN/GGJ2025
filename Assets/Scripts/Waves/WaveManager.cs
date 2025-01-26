@@ -51,12 +51,34 @@ public class WaveManager : MonoBehaviour, IService
             SL.Get<CurrencyManager>().AddCurrency(wave.waveReward);
             yield return new WaitForSeconds(10);
         }
+
+        while (true)
+        {
+            foreach (Vector2Int subWave in _waves[5].subWaves)
+            {
+                bool trainArrived = false;
+                _trainController.Arrive(() =>
+                {
+                    SpawnEnemies(subWave, _waves[5]);
+                    trainArrived = true;
+                });
+                while (!trainArrived || _enemyManager.GetEnemies().Count > 0)
+                {
+                    yield return null;
+                }
+                
+                _trainController.Leave();
+
+                yield return new WaitForSeconds(subWave.y);
+            }
+            
+            SL.Get<CurrencyManager>().AddCurrency(100);
+            yield return new WaitForSeconds(10);
+        }
     }
 
     private void SpawnEnemies(Vector2Int subWave, Wave wave)
     {
-        
-
         for (int i = 0; i < subWave.x; i++)
         {
             int prob = Random.Range(0, 100);
