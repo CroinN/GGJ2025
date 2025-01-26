@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
 using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class BubbleShooter : MonoBehaviour
@@ -15,10 +12,53 @@ public class BubbleShooter : MonoBehaviour
     
     [SerializeField] private Transform _shootingStartPoint;
     [SerializeField] private Transform _shootingEndPoint;
-    [SerializeField] private Bubble _bubblePrefab;
     [SerializeField] private int _damage;
+    [SerializeField] private Bubble[] _bubblePrefabs = new Bubble[4];
 
+    private InventoryManager _inventoryManager;
+    private int _ammoType;
     private bool _isInCooldown = false;
+
+    private void Start()
+    {
+        _inventoryManager = SL.Get<InventoryManager>();
+    }
+
+    private void Update()
+    {
+        HandleAmmoSwitching();
+    }
+
+    private void HandleAmmoSwitching()
+    {
+        int index = -1;
+        
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            index = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            index = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            index = 2;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            index = 3;
+        }
+        
+        if(index != -1 && _inventoryManager.GetItem((VendingMachine.Drink)index)>0)
+        {
+            _inventoryManager.UseItem((VendingMachine.Drink)index);
+            if (index != 2)
+            {
+                _ammoType = index;
+            }
+        }
+    }
 
     public void Shoot()
     {
@@ -28,7 +68,7 @@ public class BubbleShooter : MonoBehaviour
             Vector3 start = GetRandomPositionInCircle(_shootingStartPoint.position, _startOffsetRadius, transform.forward);
             Vector3 end = GetRandomPositionInCircle(_shootingEndPoint.position, _endOffsetRadius, transform.forward);
 
-            Bubble bubble = Instantiate(_bubblePrefab, start, Quaternion.identity, 
+            Bubble bubble = Instantiate(_bubblePrefabs[_ammoType], start, Quaternion.identity, 
                 SL.Get<GarbageManager>().garbageParent);
             bubble.Init((end - start).normalized, _damage);
         }

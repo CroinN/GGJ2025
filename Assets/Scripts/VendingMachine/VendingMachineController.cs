@@ -55,7 +55,7 @@ public class VendingMachineController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.A)) ShiftPosition(-1);
             else if (Input.GetKeyDown(KeyCode.D)) ShiftPosition(1);
-            else if (Input.GetKeyDown(KeyCode.Return)) _vendingMachine.Purchase(_drinks[_currentDrinkIndex], OnPurchaseComplete);
+            else if (Input.GetKeyDown(KeyCode.Return))_vendingMachine.Purchase(_drinks[_currentDrinkIndex], OnPurchaseComplete);
             else if(Input.GetKeyDown(KeyCode.Escape)) ChangeState(VendingMachineState.Idle);
         }
     }
@@ -114,10 +114,8 @@ public class VendingMachineController : MonoBehaviour
     private void ShiftPosition(int direction)
     {
         _currentDrinkIndex = (_currentDrinkIndex + direction) % _drinks.Count;
+        _currentDrinkIndex = Mathf.Clamp(_currentDrinkIndex, 0, _drinks.Count-1);
         VendingMachine.Drink currentDrink = _drinks[_currentDrinkIndex];
-        if(_currentDrinkIndex < 0){
-            _currentDrinkIndex = _drinks.Count-1;
-        }
 
         if (currentDrink == VendingMachine.Drink.Cola)
         {

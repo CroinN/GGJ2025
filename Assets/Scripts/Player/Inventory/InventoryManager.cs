@@ -1,14 +1,14 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour, IService
 {
+    [SerializeField] private InventoryItem[] _items = new InventoryItem[4];
     [SerializeField] private int[] _inventory = new int[4];
 
     public void AddItem(VendingMachine.Drink item)
     {
         _inventory[(int)item]++;
+        _items[(int)item].SetCount(_inventory[(int)item]);
     }
 
     public void UseItem(VendingMachine.Drink item)
@@ -16,6 +16,7 @@ public class InventoryManager : MonoBehaviour, IService
         if (GetItem(item) > 0)
         {
             _inventory[(int)item]--;
+            _items[(int)item].SetCount(_inventory[(int)item]);
         }
     }
 
