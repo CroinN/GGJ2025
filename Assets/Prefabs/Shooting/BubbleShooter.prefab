@@ -127,6 +127,7 @@ MonoBehaviour:
   _shootingEndPoint: {fileID: 1412916641686901586}
   _bubblePrefab: {fileID: 1221976378391949737, guid: 60b4f8b4fe850374a8b7e1adc54a975a,
     type: 3}
+  _damage: 5
 --- !u!1 &8836081144602153310
 GameObject:
   m_ObjectHideFlags: 0
