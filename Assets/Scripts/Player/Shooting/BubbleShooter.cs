@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class BubbleShooter : MonoBehaviour
@@ -18,7 +16,45 @@ public class BubbleShooter : MonoBehaviour
     [SerializeField] private Bubble _bubblePrefab;
     [SerializeField] private int _damage;
 
+    private InventoryManager _inventoryManager;
     private bool _isInCooldown = false;
+
+    private void Start()
+    {
+        _inventoryManager = SL.Get<InventoryManager>();
+    }
+
+    private void Update()
+    {
+        HandleAmmoSwitching();
+    }
+
+    private void HandleAmmoSwitching()
+    {
+        int index = -1;
+        
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            index = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            index = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            index = 2;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            index = 3;
+        }
+        
+        if(index != -1 && _inventoryManager.GetItem((VendingMachine.Drink)index)>0)
+        {
+            _inventoryManager.UseItem((VendingMachine.Drink)index);
+        }
+    }
 
     public void Shoot()
     {
