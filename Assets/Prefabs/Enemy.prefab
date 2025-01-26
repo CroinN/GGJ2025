@@ -97,6 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _navMeshAgent: {fileID: 4066760548578218705}
+  _skinnedMeshRenderer: {fileID: 8260325085002273402}
+  _freezeMaterial: {fileID: 2100000, guid: 60c8e22f5142c49308332303b692ff38, type: 2}
+  _unfreezeMaterial: {fileID: 2100000, guid: 3f5dc4210fd8a0744a4904d26f3793d8, type: 2}
 --- !u!114 &5272148247407514672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyHealthController: {fileID: 2524086379852147172}
+  _enemyMovement: {fileID: 46741683030946575}
 --- !u!195 &4066760548578218705
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -467,6 +471,12 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!137 &8260325085002273402 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2494753077777379880, guid: 023a076dd10e34f7ab247d4a943b88fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 5781976862820704338}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7287784842260316352
 PrefabInstance:
   m_ObjectHideFlags: 0
