@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class FluidWobble : MonoBehaviour
 {
     private Transform _transform;
+    private BoxCollider _collider;
     private Material _fluidMaterial;
 
     [SerializeField] private float fluidPercent;
@@ -13,6 +15,8 @@ public class FluidWobble : MonoBehaviour
     [SerializeField] private float recoverySpeed;
     [SerializeField] private float wobbleSpeed;
     [SerializeField] private float wobbleMax;
+
+    private float _scaleY;
 
     private float _wobbleAddX;
     private float _wobbleAddZ;
@@ -30,11 +34,16 @@ public class FluidWobble : MonoBehaviour
     private void Awake()
     {
         _transform = transform;
+        _collider = GetComponent<BoxCollider>();
         _fluidMaterial = GetComponentInChildren<MeshRenderer>().material;
     }
 
     private void Update()
     {
+
+        _scaleY = Vector3.Project(_transform.rotation * _collider.size, Vector3.up).y;
+        _fluidMaterial.SetFloat("_ScaleY", _scaleY);
+
         _fluidMaterial.SetFloat("_FluidPercent", Mathf.Clamp01(fluidPercent));
         _fluidMaterial.SetFloat("_FoamPercent", Mathf.Clamp01(foamPercent));
 
@@ -51,8 +60,8 @@ public class FluidWobble : MonoBehaviour
         _velocity = _lastPosition - _transform.position;
         _angularVelocity = _lastRotation - _transform.rotation.eulerAngles;
 
-        _wobbleAddX += _velocity.z * wobbleMax;
-        _wobbleAddZ += _velocity.x * wobbleMax;
+        _wobbleAddX += _velocity.z * 4 * wobbleMax;
+        _wobbleAddZ += _velocity.x * 4 * wobbleMax;
 
         _wobbleAddX = Mathf.Clamp(_wobbleAddX, -wobbleMax, wobbleMax);
         _wobbleAddZ = Mathf.Clamp(_wobbleAddZ, -wobbleMax, wobbleMax);
