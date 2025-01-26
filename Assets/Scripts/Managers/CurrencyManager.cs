@@ -1,18 +1,22 @@
+using TMPro;
 using UnityEngine;
 
 public class CurrencyManager : MonoBehaviour, IService
 {
+    [SerializeField] private TextMeshProUGUI _currencyText;
     [SerializeField] private int _currencyCount;
 
 
     private void Awake()
     {
         RegisterService();
+        _currencyText.SetText(_currencyCount.ToString());
     }
 
     public void AddCurrency(int count)
     {
         _currencyCount += count;
+        _currencyText.SetText(_currencyCount.ToString());
     }
 
     public void RemoveCurrency(int count)
@@ -20,6 +24,7 @@ public class CurrencyManager : MonoBehaviour, IService
         if(HasEnoughCurrency(count))
         {
             _currencyCount -= count;
+            _currencyText.SetText(_currencyCount.ToString());
         }
     }
 
