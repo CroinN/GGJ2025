@@ -125,9 +125,12 @@ MonoBehaviour:
   _bubblesPerSecond: 100
   _shootingStartPoint: {fileID: 4711881851003983609}
   _shootingEndPoint: {fileID: 1412916641686901586}
-  _bubblePrefab: {fileID: 1221976378391949737, guid: 60b4f8b4fe850374a8b7e1adc54a975a,
-    type: 3}
   _damage: 5
+  _bubblePrefabs:
+  - {fileID: 7770099820894358684, guid: e1e98239ca20c468b8062124ebdd1e6c, type: 3}
+  - {fileID: 331781943044537374, guid: 6458e91efd5e14120bcbebb0d4c36fc0, type: 3}
+  - {fileID: 1756987773070158086, guid: 54f8a410842ac4e33ac8a3f1db146eef, type: 3}
+  - {fileID: 1756987773070158086, guid: 54f8a410842ac4e33ac8a3f1db146eef, type: 3}
 --- !u!1 &8836081144602153310
 GameObject:
   m_ObjectHideFlags: 0
